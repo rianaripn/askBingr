@@ -3,29 +3,80 @@ import FormSection from './components/FormSection'
 import Header from './components/Header'
 import HeroSection from './components/HeroSection'
 import Suggestions from './components/Suggestions'
+import MovieGrid from './components/MovieGrid'
+import Detail from './components/Detail'
+import {getRecommendations} from './utils/api'
 
 function App() {
   const [inputValue, setInputValue] = useState('')
+  const [result, setResult] = useState([])
+  const [view, setView] = useState('home')
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(false)
+  const [seeDetail, setSeeDetail] = useState(null)
 
-
+  function handleHome(){
+    setView('home')
+  }
+  
   async function handleSubmit(e){
     e.preventDefault()
-    console.log('submitted: ', inputValue )
+    // const movie = await searchTMDB('Parasite')
+    // const titles = await askGroq(inputValue)
+    // console.log(titles)
+    // console.log(movie)
+    // console.log('submitted: ', inputValue )
+    
+    setIsLoading(true)
+    try{
+      const movies = await getRecommendations(inputValue)
+      setResult(movies)
+      setView('results')
+      console.log(movies)
+    }catch(err){
+      setError(err.message)
+    }finally{
+      setIsLoading(false)
+    }
   }
 
   return (
-   <>
-    <Header />
-    <HeroSection />
-    <FormSection 
-    inputValue={inputValue}
-    setInputValue={setInputValue}
-    handleSubmit={handleSubmit}
-    />
-    <Suggestions
-    setInputValue={setInputValue}
-    
-    />
+  <>
+    <Header 
+    handleHome={handleHome}/>
+
+    {view === 'home' && 
+      <>
+        <HeroSection />
+        <FormSection 
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        handleSubmit={handleSubmit}
+          />
+        <Suggestions
+        setInputValue={setInputValue}
+          />
+      </>
+    }
+    {view === 'results' && 
+    <>
+      <MovieGrid
+      inputValue={inputValue}
+      result={result}
+      setView={setView}
+      setSeeDetail={setSeeDetail}
+       />
+    </>
+    }
+    {view === 'detail' && 
+    <>
+      <Detail 
+      movie={seeDetail}
+      setView={setView}
+      />
+    </>
+    }
+
   </>
   )
 }
