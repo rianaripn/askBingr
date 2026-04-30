@@ -2,9 +2,11 @@ import { useState } from 'react'
 import FormSection from './components/FormSection'
 import Header from './components/Header'
 import HeroSection from './components/HeroSection'
+import Suggestions from './components/Suggestions'
 
 function App() {
   const [inputValue, setInputValue] = useState('')
+
 
   async function handleSubmit(e){
     e.preventDefault()
@@ -19,6 +21,10 @@ function App() {
     inputValue={inputValue}
     setInputValue={setInputValue}
     handleSubmit={handleSubmit}
+    />
+    <Suggestions
+    setInputValue={setInputValue}
+    
     />
   </>
   )
