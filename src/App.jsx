@@ -50,41 +50,42 @@ function App() {
   <>
     <Header 
     handleHome={handleHome}/>
-
-    {view === 'home' && 
+    <main className='min-h-screen'>   
+      {view === 'home' && 
+        <>
+          <HeroSection />
+          <FormSection 
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+          handleSubmit={handleSubmit}
+            />
+          <Suggestions
+          setInputValue={setInputValue}
+            />
+        </>
+      }
+      {view === 'results' && 
       <>
-        <HeroSection />
-        <FormSection 
+        <MovieGrid
         inputValue={inputValue}
+        result={result}
+        setView={setView}
+        setSeeDetail={setSeeDetail}
         setInputValue={setInputValue}
         handleSubmit={handleSubmit}
-          />
-        <Suggestions
-        setInputValue={setInputValue}
-          />
+        />
       </>
-    }
-    {view === 'results' && 
-    <>
-      <MovieGrid
-      inputValue={inputValue}
-      result={result}
-      setView={setView}
-      setSeeDetail={setSeeDetail}
-      setInputValue={setInputValue}
-      handleSubmit={handleSubmit}
-       />
-    </>
-    }
-    {view === 'detail' && 
-    <>
-      <Detail 
-      handleBack={handleBack}
-      movie={seeDetail}
-      setView={setView}
-      />
-    </>
-    }
+      }
+      {view === 'detail' && 
+      <>
+        <Detail 
+        handleBack={handleBack}
+        movie={seeDetail}
+        setView={setView}
+        />
+      </>
+      }
+    </main>
     <Footer/>
 
   </>
