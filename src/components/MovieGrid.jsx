@@ -2,7 +2,7 @@ import { useState } from "react"
 import FormSection from "./FormSection"
 import MovieCard from "./MovieCard"
 
-function MovieGrid({inputValue, result, setView, setSeeDetail, setInputValue, handleSubmit, isLoading, loadingStage}){
+function MovieGrid({inputValue, result, setView, setSeeDetail, setInputValue, handleSubmit, isLoading, loadingStage, error, handleInputError}){
     const [localInput, setLocalInput] = useState('')
    
     return(

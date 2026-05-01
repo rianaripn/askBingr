@@ -7,13 +7,14 @@ import MovieGrid from './components/MovieGrid'
 import Detail from './components/Detail'
 import Footer from './components/Footer'
 import {getRecommendations} from './utils/api'
+import Toast from './components/Toast'
 
 function App() {
   const [inputValue, setInputValue] = useState('')
   const [result, setResult] = useState([])
   const [view, setView] = useState('home')
   const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState(false)
+  const [error, setError] = useState('')
   const [seeDetail, setSeeDetail] = useState(null)
   const [loadingStage, setLoadingStage] = useState('')
   const delay = (ms)=>new Promise(resolve=>setTimeout(resolve,ms))
@@ -29,6 +30,8 @@ function App() {
     setLoadingStage('')
     setResult([])
   }
+
+  
   
   async function handleSubmit(e){
     e.preventDefault()
@@ -36,6 +39,12 @@ function App() {
     setView('results')
     setIsLoading(true)
     try{
+      // Handle Input Error //
+      if(inputValue.trim()===''){
+        setView('home')
+        throw new Error('Type something!')
+      }
+
       // tampil "Searching based on your taste..."
       setLoadingStage('searching')
       await delay(1000)
@@ -44,11 +53,13 @@ function App() {
       setLoadingStage('found') // tampil "Found it. Wait..."
       await delay(1000)
       
+
       setResult(movies)
-      setIsLoading(false)
       setLoadingStage('')
     }catch(err){
       setError(err.message)
+      await delay(3000)
+      setError('')
     }finally{
       setIsLoading(false)
     }
@@ -58,6 +69,8 @@ function App() {
   <>
     <Header 
     handleHome={handleHome}/>
+    <Toast
+    error={error}/>
     <main className='min-h-screen'>   
       {view === 'home' && 
         <>
@@ -97,6 +110,7 @@ function App() {
       }
     </main>
     <Footer/>
+    
 
   </>
   )
