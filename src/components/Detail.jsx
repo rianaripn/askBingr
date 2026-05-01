@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { getMovieDetails } from "../utils/api"
 
-function Detail({movie}){
+function Detail({movie,handleBack}){
     const [detail, setDetail] = useState(null)
 
     useEffect (()=> {
@@ -13,8 +13,17 @@ function Detail({movie}){
     },[movie.id])
     if(!detail) return <p>Loading . . .</p>
     return(
-        <section>
-            <div className="relative my-8" >
+        <section >
+            <div onClick={handleBack} 
+            className="w-fit cursor-pointer py-2 px-4 border-line border rounded-full text-ink-3 mx-6 mt-4 flex flex-row items-center gap-2 text-sm hover:bg-bg-3 hover:border 
+            hover:border-ink hover:py-2 hover:px-4 hover:text-ink">
+                <svg className="rotate-180" 
+                xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                <button >
+                    Back
+                </button>
+            </div>
+            <div className="relative my-5" >
                 <img className="w-full object-cover" 
                 src={`https://image.tmdb.org/t/p/w1280${detail.backdrop_path}`} />
                 <div className="absolute inset-0 bg-bg-3/70"/>

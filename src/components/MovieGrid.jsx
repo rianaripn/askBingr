@@ -7,8 +7,8 @@ function MovieGrid({inputValue, result, setView, setSeeDetail, setInputValue, ha
 
     return(
         <section >
-            <div className="font-fraunces text-xl italic my-12 mx-4 bg-bg-3 border border-line px-5 py-5 rounded-tr-4xl 
-            rounded-br-4xl rounded-tl-4xl w-5/6">
+            <div className=" w-fit font-fraunces text-xl italic my-12 mx-4 bg-bg-3 border border-line px-5 py-5 rounded-tr-4xl 
+            rounded-br-4xl rounded-tl-4xl ">
                 <p>"{inputValue}"</p>
             </div>
             <div className="mx-4 my-0">

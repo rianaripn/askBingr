@@ -15,6 +15,10 @@ function App() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(false)
   const [seeDetail, setSeeDetail] = useState(null)
+  
+  function handleBack(){
+    setView('results')
+  }
 
   function handleHome(){
     setInputValue('')
@@ -75,6 +79,7 @@ function App() {
     {view === 'detail' && 
     <>
       <Detail 
+      handleBack={handleBack}
       movie={seeDetail}
       setView={setView}
       />
