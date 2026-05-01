@@ -54,7 +54,7 @@ npm run dev
 
 ## Live Demo
 
-[askbingr.vercel.app](https://askbingr.vercel.app) — coming soon
+[ask-bingr.vercel.app](https://ask-bingr.vercel.app)
 
 ---
 
