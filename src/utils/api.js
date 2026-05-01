@@ -45,7 +45,7 @@ export async function getRecommendations(userInput) {
     const movies = await Promise.all(titles.map(
         title => searchTMDB(title)
     ))
-    return movies
+    return movies.filter(movie => movie !== undefined)
 }
 
 export async function getMovieDetails(movieId) {

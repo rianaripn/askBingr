@@ -31,7 +31,7 @@ function Detail({movie,handleBack}){
             </div>
             <div className="relative my-5" >
                 <img className="w-full object-cover" 
-                src={`https://image.tmdb.org/t/p/w1280${detail.backdrop_path}`} />
+                src={detail.backdrop_path ? `https://image.tmdb.org/t/p/w1280${detail.backdrop_path}` : 'https://placehold.co/1280x720?text=No+Backdrop'} />
                 <div className="absolute inset-0 bg-bg-3/70"/>
                 <div className="absolute inset-0 font-mono font-bold flex flex-col justify-between mx-auto p-4">
                     <div className="flex flex-row gap-2 text-xs text-ink">

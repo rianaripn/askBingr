@@ -37,14 +37,18 @@ function App() {
     e.preventDefault()
     
     setView('results')
-    setIsLoading(true)
     try{
       // Handle Input Error //
-      if(inputValue.trim()===''){
-        setView('home')
-        throw new Error('Type something!')
+      if(inputValue.trim()==='' && view==='home'){
+          setView('home')
+          throw new Error('Type something!')
+      }
+      if(inputValue.trim()==='' && view==='results'){
+          setView('results')
+          throw new Error('Type something!')
       }
 
+      setIsLoading(true)
       // tampil "Searching based on your taste..."
       setLoadingStage('searching')
       await delay(1000)
