@@ -17,8 +17,8 @@ export async function searchTMDB(title) {
 
 export async function askGroq(userInput) {
     const prompt = `You are a movie expert and recommender. 
-Given a user's mood, feeling, or preference, recommend 5 movies that best match their request.
-ONLY return a valid JSON array of movie titles, no explanation, no extra text.
+Given a user's mood, feeling, or preference, recommend 10 movies that best match their request.
+ONLY return a valid JSON array of movie titles, no explanation, no extra text. DONT REPEAT YOUR OUTPUT, GIVE DIFFERENT EACH PROMPT
 Example output: ["Oldboy", "Parasite", "Gone Girl", "The Prestige", "Shutter Island"]`
     const response = await fetch(GROQ_BASE_URL, {
         method: 'POST',

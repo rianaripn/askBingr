@@ -15,6 +15,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(false)
   const [seeDetail, setSeeDetail] = useState(null)
+  const [loadingStage, setLoadingStage] = useState('')
+  const delay = (ms)=>new Promise(resolve=>setTimeout(resolve,ms))
   
   function handleBack(){
     setView('results')
@@ -23,22 +25,28 @@ function App() {
   function handleHome(){
     setInputValue('')
     setView('home')
+    setIsLoading(false)
+    setLoadingStage('')
+    setResult([])
   }
   
   async function handleSubmit(e){
     e.preventDefault()
-    // const movie = await searchTMDB('Parasite')
-    // const titles = await askGroq(inputValue)
-    // console.log(titles)
-    // console.log(movie)
-    // console.log('submitted: ', inputValue )
     
+    setView('results')
     setIsLoading(true)
     try{
+      // tampil "Searching based on your taste..."
+      setLoadingStage('searching')
+      await delay(1000)
+
       const movies = await getRecommendations(inputValue)
+      setLoadingStage('found') // tampil "Found it. Wait..."
+      await delay(1000)
+      
       setResult(movies)
-      setView('results')
-      console.log(movies)
+      setIsLoading(false)
+      setLoadingStage('')
     }catch(err){
       setError(err.message)
     }finally{
@@ -67,6 +75,8 @@ function App() {
       {view === 'results' && 
       <>
         <MovieGrid
+        loadingStage={loadingStage}
+        isLoading={isLoading}
         inputValue={inputValue}
         result={result}
         setView={setView}

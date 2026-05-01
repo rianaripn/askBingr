@@ -4,7 +4,7 @@ function MovieCard({movie, setSeeDetail, setView}){
             setSeeDetail(movie)
             setView('detail')
         }} 
-        className="w-full my-4 bg-bg-3 border border-line rounded-xl rounded-tl-none p-4 cursor-pointer hover:bg-ink-4 hover:border-accent-2">
+        className="fade-in w-full my-4 bg-bg-3 border border-line rounded-xl rounded-tl-none p-4 cursor-pointer hover:bg-ink-4 hover:border-accent-2">
             <img className="rounded-xl rounded-tl-none mb-4 mx-auto" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}/>
             <div className="px-4 ">
                 <h2 className="font-fraunces font-medium italic text-xl ">{movie.title}</h2>

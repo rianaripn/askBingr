@@ -1,6 +1,6 @@
 function Footer(){
     return(
-        <section className="flex flex-col gap-2 mt-8 mb-4 pt-4 border-t border-t-line bg-bg-2">
+        <section className="flex flex-col gap-2 mt-8  pt-4 border-t border-t-line bg-bg-2">
             <div className="font-fraunces text-lg italic mx-5">
                 <h2>Bingr <span className="text-accent text-2xl">.</span></h2>
             </div>

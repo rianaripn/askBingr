@@ -19,9 +19,9 @@ function Detail({movie,handleBack}){
     },[movie.id])
     if(!detail) return <p>Loading . . .</p>
     return(
-        <section >
+        <section className="fade-in" >
             <div onClick={handleBack} 
-            className="w-fit cursor-pointer py-2 px-4 border-line border rounded-full text-ink-3 mx-6 mt-4 flex flex-row items-center gap-2 text-sm hover:bg-bg-3 hover:border 
+            className=" w-fit cursor-pointer py-2 px-4 border-line border rounded-full text-ink-3 mx-6 mt-4 flex flex-row items-center gap-2 text-sm hover:bg-bg-3 hover:border 
             hover:border-ink hover:py-2 hover:px-4 hover:text-ink">
                 <svg className="rotate-180" 
                 xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
