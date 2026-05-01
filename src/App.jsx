@@ -5,6 +5,7 @@ import HeroSection from './components/HeroSection'
 import Suggestions from './components/Suggestions'
 import MovieGrid from './components/MovieGrid'
 import Detail from './components/Detail'
+import Footer from './components/Footer'
 import {getRecommendations} from './utils/api'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
   const [seeDetail, setSeeDetail] = useState(null)
 
   function handleHome(){
+    setInputValue('')
     setView('home')
   }
   
@@ -65,6 +67,8 @@ function App() {
       result={result}
       setView={setView}
       setSeeDetail={setSeeDetail}
+      setInputValue={setInputValue}
+      handleSubmit={handleSubmit}
        />
     </>
     }
@@ -76,6 +80,7 @@ function App() {
       />
     </>
     }
+    <Footer/>
 
   </>
   )

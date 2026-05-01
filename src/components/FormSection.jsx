@@ -1,4 +1,4 @@
-function FormSection({handleSubmit,inputValue,setInputValue}){
+function FormSection({handleSubmit,inputValue='',setInputValue}){
     return(
         <form className="w-full" onSubmit={handleSubmit}>
             <div className="flex flex-row justify-center items-center gap-1 has-focus:border-accent has-focus:border bg-bg-3 border-line 
@@ -10,7 +10,7 @@ function FormSection({handleSubmit,inputValue,setInputValue}){
                 type="text" 
                 placeholder="Give me plot twist movie" />
                 <button className="flex flex-row bg-ink text-bg-1 gap-1.5 text-sm px-4 py-2 rounded-full hover:bg-accent cursor-pointer"
-                type="submit"                >
+                type="submit">
                     <span>Ask</span>
                     <svg className="shrink-0" xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
                 </button>

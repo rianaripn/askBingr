@@ -1,6 +1,10 @@
+import { useState } from "react"
+import FormSection from "./FormSection"
 import MovieCard from "./MovieCard"
 
-function MovieGrid({inputValue, result, setView, setSeeDetail}){
+function MovieGrid({inputValue, result, setView, setSeeDetail, setInputValue, handleSubmit}){
+    const [localInput, setLocalInput] = useState('')
+
     return(
         <section >
             <div className="font-fraunces text-xl italic my-12 mx-4 bg-bg-3 border border-line px-5 py-5 rounded-tr-4xl 
@@ -22,7 +26,15 @@ function MovieGrid({inputValue, result, setView, setSeeDetail}){
                         />)
                 )}
             </div>
-            
+            <FormSection
+                inputValue={localInput}
+                setInputValue={(i)=>{
+                    setInputValue(i)
+                    setLocalInput(i)
+                }}
+                handleSubmit={handleSubmit}
+            />
+
         </section>
     )
 }
