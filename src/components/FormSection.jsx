@@ -1,4 +1,4 @@
-function FormSection({handleSubmit,inputValue='',setInputValue}){
+function FormSection({handleSubmit,inputValue,setInputValue}){
     return(
         <form className="w-full" onSubmit={handleSubmit}>
             <div className="flex flex-row justify-center items-center gap-1 has-focus:border-accent has-focus:border bg-bg-3 border-line 

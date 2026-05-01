@@ -74,8 +74,8 @@ function Detail({movie,handleBack}){
                         <p className="font-fraunces text-lg pl-3 italic">{formatDollar(detail.revenue)}</p>
                     </div>
                     <div className="flex flex-col gap-1 mt-4 ">
-                        <h2 className="font-mono text-ink-3 font-medium uppercase tracking-widest text-xs">Production Companies</h2>
-                        <div className="flex flex-row ">
+                        <h2 className="font-mono text-ink-3 font-medium uppercase tracking-widest text-xs ">Production Companies</h2>
+                        <div className="flex flex-row flex-wrap">
                             {detail.production_companies.map(pc=>(
                                 <p key={pc.name} 
                                 className="font-fraunces text-xs px-3  italic text-left border border-line py-2">{pc.name}</p>
@@ -93,7 +93,7 @@ function Detail({movie,handleBack}){
                         </div>
                         <div>
                             <h2 className="font-mono text-ink-3 font-medium uppercase tracking-widest text-xs">Ratings</h2>
-                            <p className="font-fraunces text-base italic text-accent">{detail.vote_average}  <span className="text-ink text-xs">/ 10.0</span> </p>
+                            <p className="font-fraunces text-base italic text-accent">{detail.vote_average.toFixed(1)}  <span className="text-ink text-xs">/ 10.0</span> </p>
                         </div>
                     </div>
                     <div className="mt-4">

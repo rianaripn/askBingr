@@ -71,49 +71,51 @@ function App() {
 
   return (
   <>
-    <Header 
-    handleHome={handleHome}/>
-    <Toast
-    error={error}/>
-    <main className='min-h-screen'>   
-      {view === 'home' && 
+    <div className='flex flex-col h-screen'>
+      <Header 
+      handleHome={handleHome}/>
+      <Toast
+      error={error}/>
+      <main className='flex-1'>   
+        {view === 'home' && 
+          <>
+            <HeroSection />
+            <FormSection 
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+            handleSubmit={handleSubmit}
+              />
+            <Suggestions
+            setInputValue={setInputValue}
+              />
+          </>
+        }
+        {view === 'results' && 
         <>
-          <HeroSection />
-          <FormSection 
+          <MovieGrid
+          loadingStage={loadingStage}
+          isLoading={isLoading}
           inputValue={inputValue}
+          result={result}
+          setView={setView}
+          setSeeDetail={setSeeDetail}
           setInputValue={setInputValue}
           handleSubmit={handleSubmit}
-            />
-          <Suggestions
-          setInputValue={setInputValue}
-            />
+          />
         </>
-      }
-      {view === 'results' && 
-      <>
-        <MovieGrid
-        loadingStage={loadingStage}
-        isLoading={isLoading}
-        inputValue={inputValue}
-        result={result}
-        setView={setView}
-        setSeeDetail={setSeeDetail}
-        setInputValue={setInputValue}
-        handleSubmit={handleSubmit}
-        />
-      </>
-      }
-      {view === 'detail' && 
-      <>
-        <Detail 
-        handleBack={handleBack}
-        movie={seeDetail}
-        setView={setView}
-        />
-      </>
-      }
-    </main>
-    <Footer/>
+        }
+        {view === 'detail' && 
+        <>
+          <Detail 
+          handleBack={handleBack}
+          movie={seeDetail}
+          setView={setView}
+          />
+        </>
+        }
+      </main>
+      <Footer/>
+    </div>
     
 
   </>

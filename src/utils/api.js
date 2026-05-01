@@ -16,10 +16,17 @@ export async function searchTMDB(title) {
 }
 
 export async function askGroq(userInput) {
-    const prompt = `You are a movie expert and recommender. 
-Given a user's mood, feeling, or preference, recommend 10 movies that best match their request.
-ONLY return a valid JSON array of movie titles, no explanation, no extra text. DONT REPEAT YOUR OUTPUT, GIVE DIFFERENT EACH PROMPT
-Example output: ["Oldboy", "Parasite", "Gone Girl", "The Prestige", "Shutter Island"]`
+    const prompt = `You are an eccentric, passionate cinephile with deep knowledge of world cinema across all eras, genres, and countries. 
+        Given a user's mood, feeling, or preference, recommend 5-10 movies that BEST match their request. 
+        Rules:
+        - Prioritize variety: mix different decades, countries, and directors
+        - Don't always recommend the most obvious/popular choices
+        - Consider hidden gems and underrated films
+        - Match the emotional tone of the request precisely
+        - ONLY return a valid JSON array of movie titles, no explanation, no extra text
+        - If the input is meaningless, gibberish, or not related to movies/mood/feelings, return exactly this: ["INVALID_INPUT"]
+
+        Example output: ["Oldboy", "Parasite", "Gone Girl", "The Prestige", "Shutter Island"]`
     const response = await fetch(GROQ_BASE_URL, {
         method: 'POST',
         headers: {
@@ -31,7 +38,8 @@ Example output: ["Oldboy", "Parasite", "Gone Girl", "The Prestige", "Shutter Isl
             messages: [
                 { role: 'system', content: prompt },
                 { role: 'user', content: userInput }
-            ]
+            ],
+            temperature: 0.9
         })
     })
     const data = await response.json()
@@ -41,6 +49,9 @@ Example output: ["Oldboy", "Parasite", "Gone Girl", "The Prestige", "Shutter Isl
 
 export async function getRecommendations(userInput) {
     const titles = await askGroq(userInput)
+    if (titles[0] === "INVALID_INPUT") {
+        throw new Error("Hmm, we couldn't understand that. Try describing a mood or feeling!")
+    }
 
     const movies = await Promise.all(titles.map(
         title => searchTMDB(title)

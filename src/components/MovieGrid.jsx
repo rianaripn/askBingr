@@ -36,7 +36,7 @@ function MovieGrid({inputValue, result, setView, setSeeDetail, setInputValue, ha
             </div>
             <FormSection
                 
-                InputValue={localInput}
+                InputValue={inputValue}
                 setInputValue={(i)=>{
                     setInputValue(i)
                     setLocalInput(i)
