@@ -23,7 +23,7 @@ function Suggestions({setInputValue}){
     )
     return(
         <section className="font-fraunces italic text-base">
-            <ul className="flex flex-col gap-4 w-11/12 mx-auto items-center text-center">
+            <ul className="flex flex-col md:flex-row md:flex-wrap md:justify-center gap-4 w-11/12 mx-auto items-center text-center">
                 {fiveRandom.map((suggestion)=>
                     <li onClick={()=>setInputValue(suggestion)}
                     key = {suggestion}

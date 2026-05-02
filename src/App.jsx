@@ -76,7 +76,7 @@ function App() {
       handleHome={handleHome}/>
       <Toast
       error={error}/>
-      <main className='flex-1'>   
+      <main className='flex-1 max-w-screen-xl mx-auto px-4'>   
         {view === 'home' && 
           <>
             <HeroSection />
